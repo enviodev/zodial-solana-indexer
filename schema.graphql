@@ -1,0 +1,108 @@
+type Group {
+  id: ID! # marginfi_group address
+  admin: String!
+  createdTxSig: String!
+  createdSlot: Int!
+}
+
+type MarginfiAccount {
+  id: ID! # marginfi_account address
+  group: String!
+  authority: String!
+  accountIndex: Int
+  createdTxSig: String!
+  createdSlot: Int!
+}
+
+type Bank {
+  id: ID! # bank address
+  group: String!
+  mint: String!
+  admin: String!
+  kind: String! # "standard" | "with_seed" | "permissionless"
+  addedTxSig: String!
+  addedSlot: Int!
+}
+
+type Deposit {
+  id: ID! # tx signature
+  account: String!
+  bank: String!
+  authority: String!
+  amount: BigInt!
+  depositUpToLimit: Boolean
+  slot: Int!
+  txSig: String!
+}
+
+type Withdraw {
+  id: ID! # tx signature
+  account: String!
+  bank: String!
+  authority: String!
+  amount: BigInt!
+  withdrawAll: Boolean
+  slot: Int!
+  txSig: String!
+}
+
+type Borrow {
+  id: ID! # tx signature
+  account: String!
+  bank: String!
+  authority: String!
+  amount: BigInt!
+  slot: Int!
+  txSig: String!
+}
+
+type Repay {
+  id: ID! # tx signature
+  account: String!
+  bank: String!
+  authority: String!
+  amount: BigInt!
+  repayAll: Boolean
+  slot: Int!
+  txSig: String!
+}
+
+type Liquidation {
+  id: ID! # tx signature
+  group: String!
+  assetBank: String!
+  liabBank: String!
+  liquidatorAccount: String!
+  liquidateeAccount: String!
+  authority: String!
+  assetAmount: BigInt!
+  slot: Int!
+  txSig: String!
+}
+
+type LiquidationLifecycleEvent {
+  id: ID! # tx signature
+  kind: String! # "start" | "end"
+  marginfiAccount: String!
+  liquidationRecord: String!
+  slot: Int!
+  txSig: String!
+}
+
+type LendingStats {
+  id: ID! # "global"
+  groupsCreated: Int!
+  accountsCreated: Int!
+  banksCreated: Int!
+  deposits: Int!
+  withdrawals: Int!
+  borrows: Int!
+  repays: Int!
+  liquidations: Int!
+  liquidationsStarted: Int!
+  liquidationsEnded: Int!
+  totalDepositVolume: BigInt!
+  totalWithdrawVolume: BigInt!
+  totalBorrowVolume: BigInt!
+  totalRepayVolume: BigInt!
+}

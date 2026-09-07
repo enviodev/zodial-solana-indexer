@@ -1,0 +1,41 @@
+# yaml-language-server: $schema=./node_modules/envio/svm.schema.json
+name: zodial-solana
+description: >-
+  Zodial portfolio-margin lending on Solana — group/account/bank lifecycle
+  plus the deposit/withdraw/borrow/repay/liquidate flow, via HyperSync.
+ecosystem: svm
+chains:
+  - id: solana
+    start_block: 417500000
+    experimental:
+      programs:
+        - name: Zodial
+          program_id: zod11Jzp72T6qBbGVJfR38y1pGY3dBK8nSuouD4mMkZ
+          idl: ./idl/zodial.json
+          instructions:
+            - name: marginfi_group_initialize
+              discriminator: "0xff43431a5e1f2214"
+            - name: marginfi_account_initialize
+              discriminator: "0x2b4e3dff9434f99a"
+            - name: marginfi_account_initialize_pda
+              discriminator: "0x57b15b50da77f51f"
+            - name: lending_pool_add_bank
+              discriminator: "0xd744484ed0da67b6"
+            - name: lending_pool_add_bank_with_seed
+              discriminator: "0x4cd3d5ab754e9e4c"
+            - name: lending_pool_add_bank_permissionless
+              discriminator: "0x7fbb7922bba7ee66"
+            - name: lending_account_deposit
+              discriminator: "0xab5eeb675240d48c"
+            - name: lending_account_withdraw
+              discriminator: "0x24484a13d2d2c0c0"
+            - name: lending_account_borrow
+              discriminator: "0x047e74353005d41f"
+            - name: lending_account_repay
+              discriminator: "0x4fd1acb1de33ad97"
+            - name: lending_account_liquidate
+              discriminator: "0xd6a997d5fba756db"
+            - name: start_liquidation
+              discriminator: "0xf45d5ad6c0a6bf15"
+            - name: end_liquidation
+              discriminator: "0x6e0bf436e5b516b8"
